@@ -10,14 +10,28 @@ This script currently supports updating the following mod as an example:
 
 - 🔹 [smods](https://github.com/Steamodded/smods)
 
-You can easily add more by editing the `MODS` list in the script.
+To add more mods:
 
+- Fill in the name of the mod
+- give the download URL (Right click on where it says "Download Zip" and copy the link)
+- Give the name of the folder in your mods file (ex. "smods-main")
+- and the color you want the mod name to be in the cmd prompt using colorama
+  
+you can copy this format:
+<pre>
+  { 
+  "name": "MOD NAME",
+  "url": "URL HERE",
+  "folder_name": "FOLDER NAME",
+  "color": Fore.CYAN 
+  },
+</pre>
 ---
 
 ## 🚀 Features
 
-- ✅ Downloads mods directly from GitHub
-- 🔄 Compares local files to avoid unnecessary updates
+- ✅ Downloads mods directly from GitHub (or wherever)
+- 🔄 Compares local files to tell you if they have changed
 - 📂 Installs updates cleanly, overwriting outdated versions
 - 📊 Displays progress bars and color-coded output
 - 🧪 Uses a temporary folder to avoid polluting your mod directory
@@ -34,5 +48,5 @@ MAKE SURE THAT YOU HAVE THESE PACKAGES INSTALLED:
 - colorama
   
 Run this command in the terminal to download them:
-- pip install requests tqdm colorama
+<pre>pip install requests tqdm colorama</pre>
 ---
