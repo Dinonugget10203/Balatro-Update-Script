@@ -1,0 +1,46 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# === Windows ===
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# === macOS ===
+.DS_Store
+
+# === Virtual Environments ===
+.venv/
+env/
+venv/
+ENV/
+
+# === Tools and IDEs ===
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# === Archives and Downloads ===
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.rar
+
+# === Environment Files (Secrets or Tokens) ===
+.env
+*.env
+
+# === Temp Directories (like your mod temp folders) ===
+balatro_mod_update_*/
