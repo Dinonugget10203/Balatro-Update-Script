@@ -32,7 +32,7 @@ MAKE SURE THAT YOU HAVE THESE PACKAGES INSTALLED:
 - requests
 - tqdm
 - colorama
----
-Run this command in the terminal to run them:
+  
+Run this command in the terminal to download them:
 - pip install requests tqdm colorama
 ---
