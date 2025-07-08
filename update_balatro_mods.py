@@ -90,12 +90,12 @@ def download_and_extract(mod_name, url, base_temp_dir, color):
 
 
 def compare_dirs(old_dir, new_dir, rel=""):
-    diff = filecmp.dircmp(old_dir, new_dir)
+    diff = filecmp.dircmp(old_dir, new_dir, ignore=[".lovelyignore"])
     out = {"added": [], "removed": [], "changed": []}
 
-    out["added"].extend(os.path.join(rel, f) for f in diff.right_only)
-    out["removed"].extend(os.path.join(rel, f) for f in diff.left_only)
-    out["changed"].extend(os.path.join(rel, f) for f in diff.diff_files)
+    out["added"].extend(os.path.join(rel, f) for f in diff.right_only if f != ".lovelyignore")
+    out["removed"].extend(os.path.join(rel, f) for f in diff.left_only if f != ".lovelyignore")
+    out["changed"].extend(os.path.join(rel, f) for f in diff.diff_files if f != ".lovelyignore")
 
     for sub in diff.common_dirs:
         sub_diffs = compare_dirs(
@@ -109,11 +109,22 @@ def compare_dirs(old_dir, new_dir, rel=""):
 
 
 def install_mod(src, dst):
+    lovely_path_old = os.path.join(dst, ".lovelyignore")
+    lovely_path_new = os.path.join(src, ".lovelyignore")
+    preserve_lovely = None
+
+    if os.path.exists(lovely_path_old) and not os.path.exists(lovely_path_new):
+        with open(lovely_path_old, "rb") as f:
+            preserve_lovely = f.read()
+
     if os.path.exists(dst):
         shutil.rmtree(dst)
     shutil.copytree(src, dst)
 
-
+    # Restore .lovelyignore if needed
+    if preserve_lovely:
+        with open(os.path.join(dst, ".lovelyignore"), "wb") as f:
+            f.write(preserve_lovely)
 def main():
     with tempfile.TemporaryDirectory(prefix="balatro_mod_update_") as tmp:
         for mod in MODS:
